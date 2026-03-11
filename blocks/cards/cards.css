@@ -1,0 +1,255 @@
+/* Default cards – grid adapts to card count (2/3/4 columns) */
+.cards > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.cards > ul > li {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.cards .cards-card-image {
+  line-height: 0;
+}
+
+.cards > ul > li .cards-card-image img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* Card body layout */
+.cards .cards-card-body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  flex: 1;
+}
+
+/* Card title (extracted from <strong> by JS) */
+.cards .cards-card-body h3 {
+  margin: 28px 0 0;
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-color-emphasis);
+}
+
+/* Card description */
+.cards .cards-card-body .cards-card-description {
+  margin: 12px 0 0;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: normal;
+  color: var(--text-color-muted);
+}
+
+/* CTA container */
+.cards .cards-card-cta {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+/* Primary CTA – filled dark button (used when card has 2 links) */
+.cards .cards-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: var(--button-height);
+  padding: 0 20px;
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-color);
+  font-family: var(--body-font-family);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  letter-spacing: var(--button-letter-spacing);
+  text-transform: var(--button-text-transform);
+  text-decoration: none;
+  border: none;
+  transition: var(--button-transition);
+}
+
+.cards .cards-cta-primary::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  background: url('/icons/arrow-right.svg') no-repeat center;
+  background-size: contain;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
+}
+
+.cards .cards-cta-primary:hover {
+  background-color: var(--color-gray-medium);
+  color: var(--text-color-inverse);
+}
+
+/* Secondary CTA – text link with chevron */
+.cards .cards-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 24px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: var(--body-font-family);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-text-font-weight);
+  letter-spacing: var(--button-text-letter-spacing);
+  text-transform: var(--button-text-transform);
+  color: var(--button-text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.cards .cards-cta-secondary::before {
+  content: '\203A';
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.cards .cards-cta-secondary:hover {
+  color: var(--text-color-emphasis);
+}
+
+/* Hero variant - break out of section constraints */
+.section.cards-container:has(.cards.hero) {
+  margin: 0;
+}
+
+.section.cards-container:has(.cards.hero) > .cards-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+/* Hero variant - full-width vehicle family cards */
+.cards.hero > ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  height: 100vh;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.cards.hero > ul > li {
+  position: relative;
+  border: none;
+  background-color: var(--color-primary);
+  overflow: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cards.hero .cards-card-image {
+  position: absolute;
+  inset: 0;
+  line-height: 0;
+}
+
+.cards.hero .cards-card-image img,
+.cards.hero .cards-card-image video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+.cards.hero .cards-card-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin: 0;
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--text-color-inverse);
+}
+
+.cards.hero .cards-card-body p {
+  margin: 0;
+}
+
+.cards.hero .cards-card-body picture {
+  display: block;
+  margin: 0 0 48px;
+}
+
+.cards.hero .cards-card-body img {
+  width: auto;
+  height: 20px;
+  max-width: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.cards.hero .cards-card-body a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  padding: 0 20px;
+  background-color: var(--text-color-inverse);
+  color: var(--color-primary);
+  border: none;
+  border-radius: 0;
+  font-family: var(--body-font-family);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 1.0s ease, color 1.0s ease, border 1.0s ease;
+  cursor: pointer;
+}
+
+.cards.hero > ul > li:hover .cards-card-body a {
+  background-color: var(--color-primary);
+  color: var(--text-color-inverse);
+  border: 1px solid var(--text-color-inverse);
+}
+
+/* Hero variant - desktop: side-by-side layout */
+@media (width >= 900px) {
+  .cards.hero > ul {
+    display: flex;
+  }
+
+  .cards.hero > ul > li {
+    flex: 1;
+    transition: flex 1.0s ease;
+  }
+
+  .cards.hero > ul:hover > li {
+    flex: 3;
+  }
+
+  .cards.hero > ul > li:hover {
+    flex: 4;
+  }
+}
